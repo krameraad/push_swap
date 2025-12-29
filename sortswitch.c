@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   arr_print.c                                        :+:    :+:            */
+/*   sortswitch.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/12/29 20:24:39 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/29 22:21:06 by ekramer       ########   odam.nl         */
+/*   Created: 2025/12/29 22:56:18 by ekramer       #+#    #+#                 */
+/*   Updated: 2025/12/29 23:22:43 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-void arr_print(t_array *arr)
+static int	lookup(int *arr)
 {
-	unsigned int	i;
+	
+}
 
-	ft_printf("Max:\t\t%d\n", arr->max);
-	ft_printf("Length:\t\t%d\n", arr->len);
-	ft_printf("Data:\t\t");
-	if (arr->len <= 0)
-	{
-		ft_printf("empty\n");
-		return ;
-	}
-	i = 0;
-	while (i < arr->len - 1)
-	{
-        ft_printf("%d ", arr->dat[i]);
-		++i;
-	}
-    ft_printf("%d\n", arr->dat[i]);
+static int	sort3(t_array *a, t_array *b)
+{
+	
+	return (0);
+}
+
+static int	sort5(t_array *a, t_array *b)
+{
+	return (0);
+}
+
+int	sortswitch(t_array **stacks)
+{
+	if (stacks[0]->max == 3)
+		return(sort3(stacks[0], stacks[1]));
+	if (stacks[0]->max == 5)
+		return(sort5(stacks[0], stacks[1]));
+	return (-1);
 }

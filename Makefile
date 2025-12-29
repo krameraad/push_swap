@@ -2,11 +2,14 @@ NAME = push_swap
 
 DIR_LIBFT = libft/
 LIBFT = $(DIR_LIBFT)libft.a
+DIR_UTILS = utils/
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I./libft
 
 SRC = main.c operations.c
+UTILS = arr_append.c arr_issorted.c arr_prepend.c arr_remove.c \
+arr_create.c arr_populate.c arr_print.c arr_shuffle.c swap_int.c
 OBJ = $(SRC:.c=.o)
 
 # Commands --------------------------------------------------------------------
@@ -30,7 +33,7 @@ re: fclean all
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJ) $(LIBFT)
+$(NAME): $(SRC) $(LIBFT)
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(LIBFT):

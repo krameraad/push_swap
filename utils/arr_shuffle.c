@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   arr_print.c                                        :+:    :+:            */
+/*   arr_shuffle.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/12/29 20:24:39 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/29 22:21:06 by ekramer       ########   odam.nl         */
+/*   Created: 2025/12/29 20:52:16 by ekramer       #+#    #+#                 */
+/*   Updated: 2025/12/29 20:56:24 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void arr_print(t_array *arr)
+void	arr_shuffle(t_array *arr)
 {
 	unsigned int	i;
 
-	ft_printf("Max:\t\t%d\n", arr->max);
-	ft_printf("Length:\t\t%d\n", arr->len);
-	ft_printf("Data:\t\t");
-	if (arr->len <= 0)
+	i = arr->len;
+	while (i > 1)
 	{
-		ft_printf("empty\n");
-		return ;
+		swap_int(&(arr->dat[rand() % i]), &(arr->dat[i - 1]));
+		--i;
 	}
-	i = 0;
-	while (i < arr->len - 1)
-	{
-        ft_printf("%d ", arr->dat[i]);
-		++i;
-	}
-    ft_printf("%d\n", arr->dat[i]);
 }

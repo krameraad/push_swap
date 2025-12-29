@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 00:13:54 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/29 20:25:56 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/29 23:47:49 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
+# include <limits.h>
 
 typedef struct s_array
 {
@@ -26,7 +27,7 @@ typedef struct s_array
 	ARRAY UTILS
 */
 
-/* Create a new `t_array`.
+/* Create a new `t_array` using `malloc()`.
 @param size Size of the `t_array`.
 @param data Array to assign to the `t_array`'s `dat`.
 It's optional: if `data` is `NULL`,
@@ -57,6 +58,19 @@ int		arr_remove(t_array *arr);
 /* Print the elements of a `t_array`.
 @param arr Array to print.*/
 void	arr_print(t_array *arr);
+
+/* Check if a `t_array` is sorted.
+@param arr Array to check.
+@return `true` if sorted, otherwise `false`.*/
+int		arr_issorted(t_array *arr);
+
+/* Shuffle a `t_array` using `rand()`.
+@param arr Array to shuffle.*/
+void	arr_shuffle(t_array *arr);
+
+/* Fill a `t_array` with successive integers in ascending order.
+@param arr Array to populate.*/
+void	arr_populate(t_array *arr);
 
 /* Swap the values of two integers using pointers.
 @param a First integer.
@@ -99,5 +113,11 @@ The last element becomes the first one.
 @param s1 Pointer to stack to rotate.
 @param s2 Pointer to other stack to rotate. Can be `NULL`.*/
 void	rotrev(t_array *s1, t_array *s2);
+
+/*
+	TESTING
+*/
+
+int		run_tests();
 
 #endif

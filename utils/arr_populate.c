@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   arr_print.c                                        :+:    :+:            */
+/*   arr_populate.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/12/29 20:24:39 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/29 22:21:06 by ekramer       ########   odam.nl         */
+/*   Created: 2025/12/29 21:01:10 by ekramer       #+#    #+#                 */
+/*   Updated: 2025/12/29 21:02:46 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void arr_print(t_array *arr)
+void	arr_populate(t_array *arr)
 {
 	unsigned int	i;
 
-	ft_printf("Max:\t\t%d\n", arr->max);
-	ft_printf("Length:\t\t%d\n", arr->len);
-	ft_printf("Data:\t\t");
-	if (arr->len <= 0)
-	{
-		ft_printf("empty\n");
-		return ;
-	}
 	i = 0;
-	while (i < arr->len - 1)
+	while (i < arr->max)
 	{
-        ft_printf("%d ", arr->dat[i]);
+		arr->dat[i] = i;
 		++i;
 	}
-    ft_printf("%d\n", arr->dat[i]);
+	arr->len = arr->max;
 }
