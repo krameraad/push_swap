@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 00:13:54 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/29 23:47:49 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/30 00:50:06 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ typedef struct s_array
 	unsigned int	max; // Maximum amount of elements in the array.
 	unsigned int	len; // Current amount of elements in the array.
 }	t_array;
+
+/*
+	SORTING
+*/
+
+int		sortswitch(t_array **stacks);
+int		sort_radix(t_array *a, t_array *b, unsigned char bitshift);
 
 /*
 	ARRAY UTILS

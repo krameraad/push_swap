@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/29 23:22:37 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/29 23:55:27 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/30 00:22:33 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,39 +25,48 @@ static int	*intset(int *arr, unsigned int size, int n)
 	return (arr);
 }
 
-static int	find_lowest(int *a, unsigned int size, int min)
+static int	find_lowest_index(int *old, int *new, unsigned int size)
 {
+	unsigned int	lowest;
 	unsigned int	i;
+	unsigned int	j;
 
+	lowest = INT_MAX;
 	i = 0;
+	j = 0;
 	while (i < size)
 	{
-		if (a[i] > min)
-			min = a[i];
+		if (old[i] < lowest && new[i] == -1)
+		{
+			lowest = old[i];
+			j = i;
+		}
 		++i;
 	}
-	return (min);
+	return (j);
 }
 
-void	to_ranks(t_array *a)
+int	*to_ranks(t_array *arr)
 {
 	int				*new;
-	unsigned int	lowest;
-	unsigned int	newlow;
+	int				rank;
 	unsigned int	i;
+	unsigned int	j;
+	unsigned int	k;
 
-	new = malloc(a->max * sizeof(int));
+	new = malloc(arr->max * sizeof(int));
 	if (new == NULL)
-		return ;
+		return (NULL);
+	intset(arr->dat, arr->max, -1);
+	rank = 0;
 	i = 0;
-	intset(a->dat, a->max, -1);
-	lowest = INT_MIN;
-	newlow = find_lowest(a->dat, a->len, lowest);
-	while (lowest != newlow)
+	k = 0;
+	while (k < arr->max)
 	{
-		
-		++i;
+		j = find_lowest_index(arr->dat, new, arr->max);
+		new[j] = rank;
+		++rank;
+		++k;
 	}
-	free(a->dat);
-	a->dat = new;
+	return (new);
 }

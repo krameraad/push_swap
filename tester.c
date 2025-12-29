@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/29 20:46:35 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/29 23:00:18 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/30 00:51:57 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,11 @@ int run_tests()
 	stackpairs[1] = setup_test_stacks(5);
 	stackpairs[2] = setup_test_stacks(100);
 	stackpairs[3] = setup_test_stacks(500);
+
+	sort_radix(stackpairs[0][0], stackpairs[0][1], 0);
+	sort_radix(stackpairs[1][0], stackpairs[1][1], 0);
+	sort_radix(stackpairs[2][0], stackpairs[2][1], 0);
+	sort_radix(stackpairs[3][0], stackpairs[3][1], 0);
 	
 	i = 0;
 	while (i <= 3)
