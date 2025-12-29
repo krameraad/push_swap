@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 00:13:54 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/24 01:42:56 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/29 20:25:56 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,89 @@
 
 # include "libft/libft.h"
 
-typedef struct s_stack
+typedef struct s_array
 {
-	t_list			*list;
-	unsigned int	size;
-	struct s_stack	*other;
-} t_stack;
+	int				*dat; // Array of elements.
+	unsigned int	max; // Maximum amount of elements in the array.
+	unsigned int	len; // Current amount of elements in the array.
+}	t_array;
 
-void	swap(t_stack *stack, bool both);
-void	push(t_stack *stack);
-void	rotate(t_stack *stack, bool both);
-void	rotrev(t_stack *stack, bool both);
+/*
+	ARRAY UTILS
+*/
+
+/* Create a new `t_array`.
+@param size Size of the `t_array`.
+@param data Array to assign to the `t_array`'s `dat`.
+It's optional: if `data` is `NULL`,
+a new array is made and assigned to `dat`.
+@return Resulting `t_array`. `NULL` if `malloc()` failed.*/
+t_array	*arr_create(unsigned int size, int *data);
+
+/* Add an integer to the end of a `t_array`.
+@param arr Array to append to.
+@param n Integer to append.
+@return `0` if an integer was successfully appended.
+`-1` if there was no room.*/
+int		arr_append(t_array *arr, int n);
+
+/* Add an integer to the start of a `t_array`.
+@param arr Array to prepend to.
+@param n Integer to prepend.
+@return `0` if an integer was successfully prepended.
+`-1` if there was no room.*/
+int		arr_prepend(t_array *arr, int n);
+
+/* Remove the first integer of a `t_array`.
+@param arr Array to remove from.
+@return `0` if an integer was removed.
+`-1` if the array contained no integers.*/
+int		arr_remove(t_array *arr);
+
+/* Print the elements of a `t_array`.
+@param arr Array to print.*/
+void	arr_print(t_array *arr);
+
+/* Swap the values of two integers using pointers.
+@param a First integer.
+@param b Second integer.*/
+void	swap_int(int *a, int *b);
+
+/*
+	OPERATIONS
+*/
+
+/* Equivalent of `sa`, `sb` and `ss`.
+
+Swap the first 2 elements at the top of a stack.
+Do nothing if there is only one element or none.
+@param s1 Stack to swap on.
+@param s2 Other stack to swap on. Can be `NULL`.*/
+void	swap(t_array *s1, t_array *s2);
+
+/* Equivalent of `pa` and `pb`.
+
+Take the first element at the top of a stack
+and put it on top of the other stack.
+Do nothing if the stack is empty.
+@param s1 Stack to push from.
+@param s2 Stack to push to.*/
+void	push(t_array *s1, t_array *s2);
+
+/* Equivalent of `ra`, `rb` and `rr`.
+
+Shift up all elements of a stack by 1.
+The first element becomes the last one.
+@param s1 Pointer to stack to rotate.
+@param s2 Pointer to other stack to rotate. Can be `NULL`.*/
+void	rotate(t_array *s1, t_array *s2);
+
+/* Equivalent of `rra`, `rrb` and `rrr`.
+
+Shift down all elements of a stack by 1.
+The last element becomes the first one.
+@param s1 Pointer to stack to rotate.
+@param s2 Pointer to other stack to rotate. Can be `NULL`.*/
+void	rotrev(t_array *s1, t_array *s2);
 
 #endif
