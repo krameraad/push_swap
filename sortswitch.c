@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/29 22:56:18 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/30 00:32:17 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/30 00:59:33 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ int	sortswitch(t_array **stacks)
 		return(sort3(stacks[0], stacks[1]));
 	if (stacks[0]->max == 5)
 		return(sort5(stacks[0], stacks[1]));
-	return (-1);
+	return (sort_radix(stacks[0], stacks[1], 0));
 }

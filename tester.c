@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/29 20:46:35 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/30 00:51:57 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/30 01:07:41 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,29 @@ static t_array	**setup_test_stacks(unsigned int size)
 	return (stacks);
 }
 
-static int	verify_stacks(t_array **stacks)
+static int	verify_stacks(t_array *a, t_array *b)
 {
 	bool	verified;
 
-	if (arr_issorted(stacks[0]))
+	if (arr_issorted(a))
 	{
-		ft_printf("\e[4;42;97m\n" "Stack A, size %d:\tOK", stacks[0]->max);
+		ft_printf("\e[4;42;97m\n" "Stack A, size %d:\tOK", a->max);
 		ft_printf("\e[24;49;92m\n");
-		arr_print(stacks[0]);
+		arr_print(a);
 		verified = true;
 	}
 	else
 	{
-		ft_printf("\e[4;41;97m\n" "Stack A, size %d:\tKO", stacks[0]->max);
+		ft_printf("\e[4;41;97m\n" "Stack A, size %d:\tKO", a->max);
 		ft_printf("\e[24;49;91m\n");
-		arr_print(stacks[0]);
+		arr_print(a);
 		verified = false;
 	}
-	ft_printf("\e[0;4m\n" "Stack B" "\e[24m\n");
-	arr_print(stacks[1]);
+	if (b->len != 0)
+	{
+		ft_printf("\e[0;4m\n" "Stack B" "\e[24m\n");
+		arr_print(b);
+	}
 	ft_printf("\n\e[0m");
 	return (verified);
 }
@@ -65,15 +68,15 @@ int run_tests()
 	stackpairs[2] = setup_test_stacks(100);
 	stackpairs[3] = setup_test_stacks(500);
 
-	sort_radix(stackpairs[0][0], stackpairs[0][1], 0);
-	sort_radix(stackpairs[1][0], stackpairs[1][1], 0);
-	sort_radix(stackpairs[2][0], stackpairs[2][1], 0);
-	sort_radix(stackpairs[3][0], stackpairs[3][1], 0);
+	sortswitch(stackpairs[0]);
+	sortswitch(stackpairs[1]);
+	sortswitch(stackpairs[2]);
+	sortswitch(stackpairs[3]);
 	
 	i = 0;
 	while (i <= 3)
 	{
-		passes += verify_stacks(stackpairs[i]);
+		passes += verify_stacks(stackpairs[i][0], stackpairs[i][1]);
 		++i;
 	}
 	if (passes >= 4)
