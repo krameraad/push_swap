@@ -1,39 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   sort_radix.c                                       :+:    :+:            */
+/*   sort5.c                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: ekramer <ekramer@student.42.fr>              +#+                     */
+/*   By: ekramer <ekramer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/12/24 16:37:37 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/30 17:29:17 by ekramer       ########   odam.nl         */
+/*   Created: 2025/12/30 17:03:05 by ekramer       #+#    #+#                 */
+/*   Updated: 2025/12/30 18:39:31 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	sort_radix(t_array *a, t_array *b, unsigned char shift)
+int	sort5(t_array *a, t_array *b)
 {
 	unsigned int	i;
-	unsigned int	ops;
-	
-	if (shift > 31)
-		return (0);
+
 	i = 0;
-	while (i < a->max)
+	while (i < a->len)
 	{
-		if ((a->dat[0] >> shift) & 0b1)
-			rotate(a, NULL);
-		else
+		if (a->dat[0] == 3 || a->dat[0] == 4)
 			push(a, b);
+		else
+		{
+			rotate(a, NULL);
+			++i;
+		}
+	}
+	i = sort3(a);
+	if (b->dat[0] == 3)
+	{
+		swap(b, NULL);
 		++i;
 	}
-	i = b->len;
-	ops = i + a->max;
-	while (i > 0)
-	{
-		push(b, a);
-		--i;
-	}
-	return (ops + sort_radix(a, b, shift + 1));
+	push(b, a);
+	push(b, a);
+	rotate(a, NULL);
+	rotate(a, NULL);
+	return (9 + i);
 }

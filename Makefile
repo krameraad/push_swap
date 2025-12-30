@@ -1,4 +1,5 @@
 NAME = push_swap
+# cc main.c tester.c sort*.c utils/* operations.c libft/libft.a
 
 DIR_LIBFT = libft/
 LIBFT = $(DIR_LIBFT)libft.a

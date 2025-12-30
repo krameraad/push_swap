@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   arr_free.c                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: ekramer <ekramer@student.42.fr>              +#+                     */
+/*   By: ekramer <ekramer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/12/24 00:23:00 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/30 18:58:19 by ekramer       ########   odam.nl         */
+/*   Created: 2025/12/30 15:32:50 by ekramer       #+#    #+#                 */
+/*   Updated: 2025/12/30 15:33:22 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-int	main(int argc, char const *argv[])
+void	arr_free(t_array *arr)
 {
-	t_array	*stack_a;
-	t_array	*stack_b;
-	
-	return (0);
+	free(arr->dat);
+	free(arr);
 }

@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 00:13:54 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/30 00:50:06 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/30 18:52:33 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,22 @@
 
 # include "libft/libft.h"
 # include <limits.h>
+
+// 3 integers: maximum moves allowed.
+# define OPS_MAX_3 3
+
+// 5 integers: maximum moves allowed.
+# define OPS_MAX_5 12
+
+// 100 integers: maximum moves for highest score.
+# define OPS_MAX1_100 700
+// 100 integers: maximum moves allowed.
+# define OPS_MAX2_100 1500
+
+// 500 integers: maximum moves for highest score.
+# define OPS_MAX1_500 5500
+// 500 integers: maximum moves allowed.
+# define OPS_MAX2_500 11500
 
 typedef struct s_array
 {
@@ -27,8 +43,10 @@ typedef struct s_array
 	SORTING
 */
 
-int		sortswitch(t_array **stacks);
-int		sort_radix(t_array *a, t_array *b, unsigned char bitshift);
+int		sort(t_array **stacks);
+int		sort3(t_array *a);
+int		sort5(t_array *a, t_array *b);
+int		sort_radix(t_array *a, t_array *b, unsigned char shift);
 
 /*
 	ARRAY UTILS
@@ -41,6 +59,10 @@ It's optional: if `data` is `NULL`,
 a new array is made and assigned to `dat`.
 @return Resulting `t_array`. `NULL` if `malloc()` failed.*/
 t_array	*arr_create(unsigned int size, int *data);
+
+/* Free a `t_array` and its contents.
+@param arr Array to free.*/
+void	arr_free(t_array *arr);
 
 /* Add an integer to the end of a `t_array`.
 @param arr Array to append to.
