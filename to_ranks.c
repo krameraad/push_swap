@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/29 23:22:37 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/30 02:52:46 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/30 02:56:07 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	to_ranks(t_array *arr)
 
 	ptrs = malloc(arr->max * sizeof(int*));
 	if (ptrs == NULL)
-		return (-1);
+		return (-1); // We should do something with this return
 	i = 0;
 	while (i < arr->max)
 	{
