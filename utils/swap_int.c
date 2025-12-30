@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/29 18:41:52 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/29 19:57:25 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/30 02:38:40 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void swap_int(int *a, int *b)
 {
-    int c = *a;
+    int c;
+    
+    c = *a;
     *a = *b;
     *b = c;
 }

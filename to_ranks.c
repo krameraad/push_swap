@@ -6,67 +6,75 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/29 23:22:37 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/30 00:22:33 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/30 02:52:46 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	*intset(int *arr, unsigned int size, int n)
+static void	swap_ptr(void **a, void **b)
 {
-	unsigned int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		arr[i] = n;
-		++i;
-	}
-	return (arr);
+	void	*c;
+    
+    c = *a;
+    *a = *b;
+    *b = c;
 }
 
-static int	find_lowest_index(int *old, int *new, unsigned int size)
+static size_t	iter_bubble(int **array, size_t size)
 {
-	unsigned int	lowest;
-	unsigned int	i;
-	unsigned int	j;
+	size_t	i;
+	size_t	lastswap;
 
-	lowest = INT_MAX;
 	i = 0;
-	j = 0;
-	while (i < size)
+	while (i < size - 1)
 	{
-		if (old[i] < lowest && new[i] == -1)
+		if (*array[i] > *array[i + 1])
 		{
-			lowest = old[i];
-			j = i;
+			swap_ptr(&array[i], &array[i + 1]);
+			lastswap = i;
 		}
 		++i;
 	}
-	return (j);
+	return (lastswap);
 }
 
-int	*to_ranks(t_array *arr)
+static void sort_bubble(int **array, size_t size)
 {
-	int				*new;
-	int				rank;
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	k;
+	size_t	i;
+	size_t	lastswap;
 
-	new = malloc(arr->max * sizeof(int));
-	if (new == NULL)
-		return (NULL);
-	intset(arr->dat, arr->max, -1);
-	rank = 0;
 	i = 0;
-	k = 0;
-	while (k < arr->max)
+	lastswap = iter_bubble(array, size);
+	--size;
+	while (lastswap != 0)
 	{
-		j = find_lowest_index(arr->dat, new, arr->max);
-		new[j] = rank;
-		++rank;
-		++k;
+		lastswap = iter_bubble(array, size);
+		--size;
 	}
-	return (new);
+}
+
+int	to_ranks(t_array *arr)
+{
+	int				**ptrs;
+	unsigned int	i;
+
+	ptrs = malloc(arr->max * sizeof(int*));
+	if (ptrs == NULL)
+		return (-1);
+	i = 0;
+	while (i < arr->max)
+	{
+		ptrs[i] = &(arr->dat[i]);
+		++i;
+	}
+	sort_bubble(ptrs, arr->max);
+	i = 0;
+	while (i < arr->max)
+	{
+		*ptrs[i] = i;
+		++i;
+	}
+	free(ptrs);
+	return (0);
 }
