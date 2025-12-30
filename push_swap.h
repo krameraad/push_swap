@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 00:13:54 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/30 18:52:33 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/30 20:50:58 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		arr_prepend(t_array *arr, int n);
 `-1` if the array contained no integers.*/
 int		arr_remove(t_array *arr);
 
-/* Print the elements of a `t_array`.
+/* Print the elements of a `t_array` to `stdout`.
 @param arr Array to print.*/
 void	arr_print(t_array *arr);
 
@@ -105,6 +105,11 @@ void	arr_populate(t_array *arr);
 @param a First integer.
 @param b Second integer.*/
 void	swap_int(int *a, int *b);
+
+/* Swap the values of two pointers using pointers.
+@param a First pointer.
+@param b Second pointer.*/
+void	swap_ptr(void **a, void **b);
 
 /*
 	OPERATIONS
@@ -142,11 +147,5 @@ The last element becomes the first one.
 @param s1 Pointer to stack to rotate.
 @param s2 Pointer to other stack to rotate. Can be `NULL`.*/
 void	rotrev(t_array *s1, t_array *s2);
-
-/*
-	TESTING
-*/
-
-int		run_tests();
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/29 20:46:35 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/30 19:01:32 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/30 20:51:40 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,20 @@ static int	verify_stacks(t_array *a, t_array *b)
 	return (verified);
 }
 
-static int	check_ops_max(size_t ops, size_t max1, size_t max2)
-{
-	if (ops < max1)
-		return (FAIL);
-	if (ops > max1 && ops < max2)
-		return (WIN);
-	if (ops > max2)
-		return (EPICWIN);
-}
+// static int	check_ops_max(size_t ops, size_t max1, size_t max2)
+// {
+// 	if (ops > max1)
+// 		return (FAIL);
+// 	if (ops > max1 && ops < max2)
+// 		return (WIN);
+// 	return (EPICWIN);
+// }
 
-int run_tests()
+int	main(int argc, char const *argv[])
 {
+	srand(time(NULL));
 	t_array			**stackpairs[4];
-	size_t			ops[4];
+	unsigned int	ops[4];
 	unsigned int	i;
 	unsigned int	passes;
 
@@ -83,8 +83,6 @@ int run_tests()
 	stackpairs[1] = setup_test_stacks(5);
 	stackpairs[2] = setup_test_stacks(100);
 	stackpairs[3] = setup_test_stacks(500);
-
-	// sortswitch(stackpairs[1]);
 
 	i = 0;
 	while (i <= 3)
@@ -97,7 +95,7 @@ int run_tests()
 	while (i <= 3)
 	{
 		passes += verify_stacks(stackpairs[i][0], stackpairs[i][1]);
-		ft_printf("Operations:\t%lu\n", ops[i]);
+		ft_printf("Operations:\t%d\n", ops[i]);
 		++i;
 	}
 	if (passes >= 4)
@@ -106,12 +104,5 @@ int run_tests()
 		ft_printf("\e[91m");
 	ft_printf("%u/4 tests passed\n\n", passes);
 	ft_printf("\e[0m");
-	return 0;
-}
-
-int	main(int argc, char const *argv[])
-{
-	srand(time(NULL));
-	run_tests();
 	return (0);
 }

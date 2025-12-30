@@ -6,20 +6,11 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/29 23:22:37 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/30 02:56:07 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/30 20:33:41 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void	swap_ptr(void **a, void **b)
-{
-	void	*c;
-    
-    c = *a;
-    *a = *b;
-    *b = c;
-}
 
 static size_t	iter_bubble(int **array, size_t size)
 {
