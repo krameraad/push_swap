@@ -6,11 +6,11 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/29 20:24:39 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/29 22:21:06 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/31 19:44:28 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 void arr_print(t_array *arr)
 {

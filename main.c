@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 00:23:00 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/31 01:15:03 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/31 19:39:45 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,32 @@ static int	check_badchar(char const **strs)
 	return (false);
 }
 
+static char	**setup_strings(int argc, char const **args)
+{
+	char	**strs;
+	size_t	i;
+	
+	if (argc == 2)
+		return (ft_split(args[1], ' '));
+	strs = malloc((argc - 1) * sizeof(char*));
+	if (strs == NULL)
+		return (NULL);
+	i = 0;
+	while (args[i] != NULL)
+	{
+		strs[i] = ft_strdup(args[i]);
+		if (strs[i] == NULL)
+		{
+			i = 0;
+			while (strs[i] != NULL)
+				free(strs[i++]);
+			return (free(strs), NULL);
+		}
+		++i;
+	}
+	return (strs);
+}
+
 static int	setup_stacks(t_array **stacks, char **strs)
 {
 	int		*array;
@@ -95,10 +121,7 @@ int	main(int argc, char const *argv[])
 		return (0);
 	if (check_badchar(argv + 1))
 		return (ft_printf("Error"), -1);
-	if (argc == 2)
-		strs = ft_split(argv[1], ' ');
-	else
-		strs = argv;
+	strs = setup_strings(argc, argv + 1);
 	if (strs == NULL)
 		return (-1);
 	if (setup_stacks(stacks, strs) == -1)
@@ -109,3 +132,17 @@ int	main(int argc, char const *argv[])
 	arr_free(stacks[1]);
 	return (0);
 }
+
+/*
+push_swap/
+↳ libft/
+  ↳ Makefile
+  ↳ *.c
+  ↳ libft.h
+↳ utils/
+  ↳ *.c
+↳ Makefile
+↳ main.c
+↳ *.c
+↳ push_swap.h
+*/

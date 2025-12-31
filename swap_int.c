@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   swap_ptr.c                                         :+:    :+:            */
+/*   swap_int.c                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: ekramer <ekramer@student.codam.nl>           +#+                     */
+/*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/12/30 20:33:50 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/30 20:33:56 by ekramer       ########   odam.nl         */
+/*   Created: 2025/12/29 18:41:52 by ekramer       #+#    #+#                 */
+/*   Updated: 2025/12/31 19:44:11 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "push_swap.h"
 
-void	swap_ptr(void **a, void **b)
+void swap_int(int *a, int *b)
 {
-	void	*c;
+    int c;
     
     c = *a;
     *a = *b;

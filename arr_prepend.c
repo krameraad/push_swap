@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstsize_circ.c                                  :+:    :+:            */
+/*   arr_prepend.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/12/24 16:51:03 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/29 19:57:23 by ekramer       ########   odam.nl         */
+/*   Created: 2025/12/29 19:49:04 by ekramer       #+#    #+#                 */
+/*   Updated: 2025/12/31 19:44:30 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-size_t	ft_lstsize_circ(t_list *lst)
+int	arr_prepend(t_array *arr, int n)
 {
-	t_list	*start;
-	size_t	i;
-
-	if (lst == NULL)
-		return (0);
-	start = lst;
-	lst = lst->next;
-	i = 1;
-	while (lst != start && lst != NULL)
+	unsigned int	i;
+	
+	if (arr->len >= arr->max)
+		return (-1);
+	i = arr->len;
+	while (i > 0)
 	{
-		lst = lst->next;
-		++i;
+		arr->dat[i] = arr->dat[i - 1];
+		--i;
 	}
-	return (i);
+	arr->dat[0] = n;
+	arr->len += 1;
+	return (0);
 }

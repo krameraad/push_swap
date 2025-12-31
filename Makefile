@@ -1,16 +1,15 @@
 NAME = push_swap
-# cc main.c tester.c operations.c sor*.c utils/* libft/libft.a
+# cc main.c operations.c sor*.c utils/* libft/libft.a
 
 DIR_LIBFT = libft/
 LIBFT = $(DIR_LIBFT)libft.a
-DIR_UTILS = utils/
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I./libft
 
-SRC = main.c operations.c
-UTILS = arr_append.c arr_issorted.c arr_prepend.c arr_remove.c \
-arr_create.c arr_populate.c arr_print.c arr_shuffle.c swap_int.c
+SRC = arr_append.c arr_create.c arr_free.c arr_issorted.c arr_populate.c \
+arr_prepend.c arr_print.c arr_remove.c arr_shuffle.c main.c operations.c \
+sort.c sort3.c sort5.c sort_radix.c swap_int.c swap_ptr.c to_ranks.c
 OBJ = $(SRC:.c=.o)
 
 # Commands --------------------------------------------------------------------
@@ -34,7 +33,7 @@ re: fclean all
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(SRC) $(LIBFT)
+$(NAME): $(OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(LIBFT):

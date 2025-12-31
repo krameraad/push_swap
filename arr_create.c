@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   arr_issorted.c                                     :+:    :+:            */
+/*   arr_create.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/12/29 20:47:47 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/29 21:00:31 by ekramer       ########   odam.nl         */
+/*   Created: 2025/12/29 17:38:38 by ekramer       #+#    #+#                 */
+/*   Updated: 2025/12/31 19:44:39 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-int arr_issorted(t_array *arr)
+t_array	*arr_create(unsigned int size, int *data)
 {
-	unsigned int	i;
-
-	i = 0;
-	while (i < arr->len - 1)
+	t_array	*arr;
+	
+	arr = malloc(sizeof(t_array));
+	if (arr == NULL)
+		return (NULL);
+	if (data == NULL)
 	{
-		if (arr->dat[i] > arr->dat[i + 1])
-			return (false);
-		++i;
+		arr->dat = malloc(size * sizeof(int));
+		if (arr->dat == NULL)
+			return (free(arr), NULL);
 	}
-	return (true);
+	else
+		arr->dat = data;
+	arr->max = size;
+	arr->len = 0;
+	return (arr);
 }

@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   arr_populate.c                                     :+:    :+:            */
+/*   arr_append.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/12/29 21:01:10 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/29 21:02:46 by ekramer       ########   odam.nl         */
+/*   Created: 2025/12/29 19:49:32 by ekramer       #+#    #+#                 */
+/*   Updated: 2025/12/31 19:44:42 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-void	arr_populate(t_array *arr)
+int	arr_append(t_array *arr, int n)
 {
-	unsigned int	i;
-
-	i = 0;
-	while (i < arr->max)
-	{
-		arr->dat[i] = i;
-		++i;
-	}
-	arr->len = arr->max;
+	if (arr->len >= arr->max)
+		return (-1);
+	arr->dat[arr->len] = n;
+	arr->len += 1;
+	return (0);
 }

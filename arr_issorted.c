@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   arr_free.c                                         :+:    :+:            */
+/*   arr_issorted.c                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: ekramer <ekramer@student.codam.nl>           +#+                     */
+/*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/12/30 15:32:50 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/30 15:33:22 by ekramer       ########   odam.nl         */
+/*   Created: 2025/12/29 20:47:47 by ekramer       #+#    #+#                 */
+/*   Updated: 2025/12/31 19:44:35 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-void	arr_free(t_array *arr)
+int arr_issorted(t_array *arr)
 {
-	free(arr->dat);
-	free(arr);
+	unsigned int	i;
+
+	i = 0;
+	while (i < arr->len - 1)
+	{
+		if (arr->dat[i] > arr->dat[i + 1])
+			return (false);
+		++i;
+	}
+	return (true);
 }

@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   arr_append.c                                       :+:    :+:            */
+/*   swap_ptr.c                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: ekramer <ekramer@student.42.fr>              +#+                     */
+/*   By: ekramer <ekramer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/12/29 19:49:32 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/29 19:57:12 by ekramer       ########   odam.nl         */
+/*   Created: 2025/12/30 20:33:50 by ekramer       #+#    #+#                 */
+/*   Updated: 2025/12/31 19:44:14 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-int	arr_append(t_array *arr, int n)
+void	swap_ptr(void **a, void **b)
 {
-	if (arr->len >= arr->max)
-		return (-1);
-	arr->dat[arr->len] = n;
-	arr->len += 1;
-	return (0);
+	void	*c;
+    
+    c = *a;
+    *a = *b;
+    *b = c;
 }

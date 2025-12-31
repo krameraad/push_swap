@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   swap_int.c                                         :+:    :+:            */
+/*   arr_free.c                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: ekramer <ekramer@student.42.fr>              +#+                     */
+/*   By: ekramer <ekramer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/12/29 18:41:52 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/30 02:38:40 by ekramer       ########   odam.nl         */
+/*   Created: 2025/12/30 15:32:50 by ekramer       #+#    #+#                 */
+/*   Updated: 2025/12/31 19:44:37 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-void swap_int(int *a, int *b)
+void	arr_free(t_array *arr)
 {
-    int c;
-    
-    c = *a;
-    *a = *b;
-    *b = c;
+	free(arr->dat);
+	free(arr);
 }

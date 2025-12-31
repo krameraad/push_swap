@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   arr_remove.c                                       :+:    :+:            */
+/*   arr_populate.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/12/29 19:48:21 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/29 19:57:21 by ekramer       ########   odam.nl         */
+/*   Created: 2025/12/29 21:01:10 by ekramer       #+#    #+#                 */
+/*   Updated: 2025/12/31 19:44:32 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-int	arr_remove(t_array *arr)
+void	arr_populate(t_array *arr)
 {
 	unsigned int	i;
 
-	if (arr->len <= 0)
-		return (-1);
 	i = 0;
-	while (i < arr->len - 1)
+	while (i < arr->max)
 	{
-		arr->dat[i] = arr->dat[i + 1];
+		arr->dat[i] = i;
 		++i;
 	}
-	arr->len -= 1;
-	return (0);
+	arr->len = arr->max;
 }
