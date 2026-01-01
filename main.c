@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 00:23:00 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/31 19:39:45 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/31 21:35:24 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,35 +43,37 @@ a numeric or whitespace character.
 static int	check_badchar(char const **strs)
 {
 	size_t	i;
+	size_t	j;
 
-	while (*strs != NULL)
+	i = 1;
+	while (strs[i] != NULL)
 	{
-		i = 0;
-		while (*strs[i] != '\0')
+		j = 0;
+		while (strs[i][j] != '\0')
 		{
-			if (ft_strchr(" \t\n\v\f\r0123456789-+", *strs[i]) == NULL)
+			if (ft_strchr(" \t\n\v\f\r0123456789-+", strs[i][j]) == NULL)
 				return (true);
-			++i;
+			++j;
 		}
-		++strs;
+		++i;
 	}
 	return (false);
 }
 
-static char	**setup_strings(int argc, char const **args)
+static char	**setup_strings(int argc, char const **argv)
 {
 	char	**strs;
 	size_t	i;
 	
 	if (argc == 2)
-		return (ft_split(args[1], ' '));
-	strs = malloc((argc - 1) * sizeof(char*));
+		return (ft_split(argv[1], ' '));
+	strs = malloc(argc * sizeof(char*));
 	if (strs == NULL)
 		return (NULL);
 	i = 0;
-	while (args[i] != NULL)
+	while (argv[i + 1] != NULL)
 	{
-		strs[i] = ft_strdup(args[i]);
+		strs[i] = ft_strdup(argv[i + 1]);
 		if (strs[i] == NULL)
 		{
 			i = 0;
@@ -81,11 +83,13 @@ static char	**setup_strings(int argc, char const **args)
 		}
 		++i;
 	}
+	strs[i] = NULL;
 	return (strs);
 }
 
-static int	setup_stacks(t_array **stacks, char **strs)
+static t_array	**setup_stacks(char **strs)
 {
+	t_array	**stacks;
 	int		*array;
 	size_t	i;
 	
@@ -94,7 +98,7 @@ static int	setup_stacks(t_array **stacks, char **strs)
 		++i;
 	array = malloc(i * sizeof(int));
 	if (array == NULL)
-		return (-1);
+		return (NULL);
 	i = 0;
 	while (strs[i] != NULL)
 	{
@@ -102,29 +106,33 @@ static int	setup_stacks(t_array **stacks, char **strs)
 		++i;
 	}
 	if (check_dupes(array, i))
-		return (ft_printf("Error"), free(array), -1);
+		return (ft_printf("Error"), free(array), NULL);
+	stacks = malloc(2 * sizeof(t_array));
+	if (stacks == NULL)
+		return (free(array), NULL);
 	stacks[0] = arr_create(i, array);
 	if (stacks[0] == NULL)
-		return (free(array), -1);
+		return (free(array), free(stacks), NULL);
 	stacks[1] = arr_create(i, NULL);
 	if (stacks[1] == NULL)
-		return (arr_free(stacks[0]), -1);
-	return (0);
+		return (arr_free(stacks[0]), free(stacks), NULL);
+	return (stacks);
 }
 
 int	main(int argc, char const *argv[])
 {
-	t_array	*stacks[2];
+	t_array	**stacks;
 	char	**strs;
 
 	if (argc == 1)
 		return (0);
-	if (check_badchar(argv + 1))
+	if (check_badchar(argv))
 		return (ft_printf("Error"), -1);
-	strs = setup_strings(argc, argv + 1);
+	strs = setup_strings(argc, argv);
 	if (strs == NULL)
 		return (-1);
-	if (setup_stacks(stacks, strs) == -1)
+	stacks = setup_stacks(strs);
+	if (stacks == NULL)
 		return (free(strs), -1);
 	free(strs);
 	sort(stacks);
@@ -132,17 +140,3 @@ int	main(int argc, char const *argv[])
 	arr_free(stacks[1]);
 	return (0);
 }
-
-/*
-push_swap/
-↳ libft/
-  ↳ Makefile
-  ↳ *.c
-  ↳ libft.h
-↳ utils/
-  ↳ *.c
-↳ Makefile
-↳ main.c
-↳ *.c
-↳ push_swap.h
-*/

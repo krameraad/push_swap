@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/29 20:47:47 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/31 19:44:35 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/31 21:35:47 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int arr_issorted(t_array *arr)
 {
 	unsigned int	i;
 
+	if (arr->len < 2)
+		return (true);
 	i = 0;
 	while (i < arr->len - 1)
 	{

@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   sort_radix.c                                       :+:    :+:            */
+/*   test_generator.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/12/24 16:37:37 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/31 21:46:58 by ekramer       ########   odam.nl         */
+/*   Created: 2025/12/31 21:49:14 by ekramer       #+#    #+#                 */
+/*   Updated: 2025/12/31 22:01:09 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <fcntl.h>
+#include <stdio.h>
 
-int	sort_radix(t_array *a, t_array *b, unsigned char shift)
+int main(int argc, char const *argv[])
 {
-	unsigned int	i;
-	unsigned int	ops;
+	int fd = open("test.txt", O_CREAT | O_WRONLY | O_TRUNC);
 	
-	if (shift > 9)
-		return (0);
-	i = 0;
-	while (i < a->max)
+	for (size_t i = 0; i < 500; ++i)
 	{
-		if ((a->dat[0] >> shift) & 0b1)
-			rotate(a, NULL, "ra\n");
-		else
-			push(a, b, "pb\n");
-		++i;
+		char *num = ft_itoa(i);
+		write(fd, num, ft_strlen(num));
+		write(fd, " ", 1);
+		free(num);
 	}
-	i = b->len;
-	ops = i + a->max;
-	while (i > 0)
-	{
-		push(b, a, "pa\n");
-		--i;
-	}
-	return (ops + sort_radix(a, b, shift + 1));
+	return (close(fd), 0);
 }

@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/29 23:22:37 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/30 20:33:41 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/31 20:12:08 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static size_t	iter_bubble(int **array, size_t size)
 	{
 		if (*array[i] > *array[i + 1])
 		{
-			swap_ptr(&array[i], &array[i + 1]);
+			swap_ptr((void**)&array[i], (void**)&array[i + 1]);
 			lastswap = i;
 		}
 		++i;
@@ -32,13 +32,11 @@ static size_t	iter_bubble(int **array, size_t size)
 
 static void sort_bubble(int **array, size_t size)
 {
-	size_t	i;
 	size_t	lastswap;
 
-	i = 0;
 	lastswap = iter_bubble(array, size);
 	--size;
-	while (lastswap != 0)
+	while (lastswap != 0 && size > 1)
 	{
 		lastswap = iter_bubble(array, size);
 		--size;

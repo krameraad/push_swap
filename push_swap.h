@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 00:13:54 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/31 00:12:48 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/31 21:41:08 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,13 @@ void	swap_int(int *a, int *b);
 @param b Second pointer.*/
 void	swap_ptr(void **a, void **b);
 
+/* Convert the values of a `t_array` to normalized ranks
+(eg. `-12, 50, 2899` -> `0, 1, 2`).
+@param arr Array to convert.
+@return `0` if the operation was successful.
+`-1` if `malloc()` failed.*/
+int	to_ranks(t_array *arr);
+
 /*
 	OPERATIONS
 */
@@ -120,8 +127,10 @@ void	swap_ptr(void **a, void **b);
 Swap the first 2 elements at the top of a stack.
 Do nothing if there is only one element or none.
 @param s1 Stack to swap on.
-@param s2 Other stack to swap on. Can be `NULL`.*/
-void	swap(t_array *s1, t_array *s2);
+@param s2 Other stack to swap on. Can be `NULL`.
+@param out What the output of the operation should be.
+The output should include the `\\n`.*/
+void	swap(t_array *s1, t_array *s2, char *out);
 
 /* Equivalent of `pa` and `pb`.
 
@@ -129,23 +138,29 @@ Take the first element at the top of a stack
 and put it on top of the other stack.
 Do nothing if the stack is empty.
 @param s1 Stack to push from.
-@param s2 Stack to push to.*/
-void	push(t_array *s1, t_array *s2);
+@param s2 Stack to push to.
+@param out What the output of the operation should be.
+The output should include the `\\n`.*/
+void	push(t_array *s1, t_array *s2, char *out);
 
 /* Equivalent of `ra`, `rb` and `rr`.
 
 Shift up all elements of a stack by 1.
 The first element becomes the last one.
 @param s1 Pointer to stack to rotate.
-@param s2 Pointer to other stack to rotate. Can be `NULL`.*/
-void	rotate(t_array *s1, t_array *s2);
+@param s2 Pointer to other stack to rotate. Can be `NULL`.
+@param out What the output of the operation should be.
+The output should include the `\\n`.*/
+void	rotate(t_array *s1, t_array *s2, char *out);
 
 /* Equivalent of `rra`, `rrb` and `rrr`.
 
 Shift down all elements of a stack by 1.
 The last element becomes the first one.
 @param s1 Pointer to stack to rotate.
-@param s2 Pointer to other stack to rotate. Can be `NULL`.*/
-void	rotrev(t_array *s1, t_array *s2);
+@param s2 Pointer to other stack to rotate. Can be `NULL`.
+@param out What the output of the operation should be.
+The output should include the `\\n`.*/
+void	rotrev(t_array *s1, t_array *s2, char *out);
 
 #endif

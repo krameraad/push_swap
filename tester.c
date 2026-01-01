@@ -6,16 +6,12 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/29 20:46:35 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/30 20:51:40 by ekramer       ########   odam.nl         */
+/*   Updated: 2025/12/31 20:42:03 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <time.h>
-
-#define FAIL -1
-#define WIN 0
-#define EPICWIN 1
 
 static t_array	**setup_test_stacks(unsigned int size)
 {
@@ -37,21 +33,21 @@ static t_array	**setup_test_stacks(unsigned int size)
 
 static int	verify_stacks(t_array *a, t_array *b)
 {
-	bool	verified;
+	bool	verified_on_twitter;
 
 	if (arr_issorted(a))
 	{
 		ft_printf("\e[4;42;97m\n" "Stack A, size %d:\tOK", a->max);
 		ft_printf("\e[24;49;92m\n");
 		arr_print(a);
-		verified = true;
+		verified_on_twitter = true;
 	}
 	else
 	{
 		ft_printf("\e[4;41;97m\n" "Stack A, size %d:\tKO", a->max);
 		ft_printf("\e[24;49;91m\n");
 		arr_print(a);
-		verified = false;
+		verified_on_twitter = false;
 	}
 	if (b->len != 0)
 	{
@@ -59,17 +55,8 @@ static int	verify_stacks(t_array *a, t_array *b)
 		arr_print(b);
 	}
 	ft_printf("\n\e[0m");
-	return (verified);
+	return (verified_on_twitter);
 }
-
-// static int	check_ops_max(size_t ops, size_t max1, size_t max2)
-// {
-// 	if (ops > max1)
-// 		return (FAIL);
-// 	if (ops > max1 && ops < max2)
-// 		return (WIN);
-// 	return (EPICWIN);
-// }
 
 int	main(int argc, char const *argv[])
 {
