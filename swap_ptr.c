@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/30 20:33:50 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/31 19:44:14 by ekramer       ########   odam.nl         */
+/*   Updated: 2026/01/02 18:00:48 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	swap_ptr(void **a, void **b)
 {
 	void	*c;
-    
-    c = *a;
-    *a = *b;
-    *b = c;
+
+	c = *a;
+	*a = *b;
+	*b = c;
 }

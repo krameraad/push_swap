@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 16:37:37 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/31 21:46:58 by ekramer       ########   odam.nl         */
+/*   Updated: 2026/01/02 17:54:28 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	sort_radix(t_array *a, t_array *b, unsigned char shift)
 {
 	unsigned int	i;
 	unsigned int	ops;
-	
-	if (shift > 9)
+
+	if (shift > 8)
 		return (0);
 	i = 0;
 	while (i < a->max)

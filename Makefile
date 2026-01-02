@@ -1,5 +1,4 @@
 NAME = push_swap
-# cc main.c operations.c sor*.c utils/* libft/libft.a
 
 DIR_LIBFT = libft/
 LIBFT = $(DIR_LIBFT)libft.a
@@ -7,14 +6,14 @@ LIBFT = $(DIR_LIBFT)libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I./libft
 
-SRC = arr_append.c arr_create.c arr_free.c arr_issorted.c arr_populate.c \
-arr_prepend.c arr_print.c arr_remove.c arr_shuffle.c main.c operations.c \
+SRC = arr_append.c arr_create.c arr_free.c arr_issorted.c \
+arr_populate.c arr_prepend.c arr_remove.c main.c operations.c \
 sort.c sort3.c sort5.c sort_radix.c swap_int.c swap_ptr.c to_ranks.c
 OBJ = $(SRC:.c=.o)
 
 # Commands --------------------------------------------------------------------
 
-all: $(NAME)
+all: $(DIR_OBJ) $(NAME)
 
 clean:
 	rm -f $(OBJ)
@@ -26,7 +25,14 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+test: all
+	sh test0.sh
+	sh test3.sh
+	sh test5.sh
+	sh test100.sh
+	sh test500.sh
+
+.PHONY: all clean fclean re test
 
 # Files -----------------------------------------------------------------------
 

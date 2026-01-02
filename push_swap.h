@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 00:13:54 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/31 21:41:08 by ekramer       ########   odam.nl         */
+/*   Updated: 2026/01/02 17:54:02 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,28 @@ typedef struct s_array
 	SORTING
 */
 
+/* Sort a pair of `t_array` stacks.
+@param stacks Pair of stacks to sort.
+@return Amount of operations performed.
+`-1` if `malloc()` failed.*/
 int		sort(t_array **stacks);
+
+/* Sort a stack of size 3 using hardcoded solutions.
+@param a Stack to sort.
+@return Amount of operations performed. */
 int		sort3(t_array *a);
+
+/* Sort a stack of size 5 `sort3()` and then some simple operations.
+@param a Stack to sort.
+@param b Buffer stack.
+@return Amount of operations performed. */
 int		sort5(t_array *a, t_array *b);
+
+/* Sort a stack of any size using radix sort.
+Inefficient for small stacks, making other sorts useful.
+@param a Stack to sort.
+@param b Buffer stack.
+@return Amount of operations performed. */
 int		sort_radix(t_array *a, t_array *b, unsigned char shift);
 
 /*
@@ -116,7 +135,7 @@ void	swap_ptr(void **a, void **b);
 @param arr Array to convert.
 @return `0` if the operation was successful.
 `-1` if `malloc()` failed.*/
-int	to_ranks(t_array *arr);
+int		to_ranks(t_array *arr);
 
 /*
 	OPERATIONS

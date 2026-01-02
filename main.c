@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 00:23:00 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/31 21:35:24 by ekramer       ########   odam.nl         */
+/*   Updated: 2026/01/02 17:58:32 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ static char	**setup_strings(int argc, char const **argv)
 {
 	char	**strs;
 	size_t	i;
-	
+
 	if (argc == 2)
 		return (ft_split(argv[1], ' '));
-	strs = malloc(argc * sizeof(char*));
+	strs = malloc(argc * sizeof(char *));
 	if (strs == NULL)
 		return (NULL);
 	i = 0;
@@ -87,18 +87,17 @@ static char	**setup_strings(int argc, char const **argv)
 	return (strs);
 }
 
-static t_array	**setup_stacks(char **strs)
+static int	setup_stacks(t_array **stacks, char **strs)
 {
-	t_array	**stacks;
 	int		*array;
 	size_t	i;
-	
+
 	i = 0;
 	while (strs[i] != NULL)
 		++i;
 	array = malloc(i * sizeof(int));
 	if (array == NULL)
-		return (NULL);
+		return (-1);
 	i = 0;
 	while (strs[i] != NULL)
 	{
@@ -106,23 +105,21 @@ static t_array	**setup_stacks(char **strs)
 		++i;
 	}
 	if (check_dupes(array, i))
-		return (ft_printf("Error"), free(array), NULL);
-	stacks = malloc(2 * sizeof(t_array));
-	if (stacks == NULL)
-		return (free(array), NULL);
+		return (ft_printf("Error"), free(array), -1);
 	stacks[0] = arr_create(i, array);
 	if (stacks[0] == NULL)
-		return (free(array), free(stacks), NULL);
+		return (ft_printf("Out of memory"), free(array), -1);
 	stacks[1] = arr_create(i, NULL);
 	if (stacks[1] == NULL)
-		return (arr_free(stacks[0]), free(stacks), NULL);
-	return (stacks);
+		return (ft_printf("Out of memory"), arr_free(stacks[0]), -1);
+	return (0);
 }
 
 int	main(int argc, char const *argv[])
 {
 	t_array	**stacks;
 	char	**strs;
+	int		i;
 
 	if (argc == 1)
 		return (0);
@@ -131,12 +128,16 @@ int	main(int argc, char const *argv[])
 	strs = setup_strings(argc, argv);
 	if (strs == NULL)
 		return (-1);
-	stacks = setup_stacks(strs);
+	stacks = malloc(2 * sizeof(t_array));
 	if (stacks == NULL)
 		return (free(strs), -1);
+	if (setup_stacks(stacks, strs) == -1)
+		return (free(strs), free(stacks), -1);
+	i = 0;
+	while (strs[i] != NULL)
+		free(strs[i++]);
 	free(strs);
-	sort(stacks);
-	arr_free(stacks[0]);
-	arr_free(stacks[1]);
-	return (0);
+	if (sort(stacks) == -1)
+		return (arr_free(stacks[0]), arr_free(stacks[1]), free(stacks), -1);
+	return (arr_free(stacks[0]), arr_free(stacks[1]), free(stacks), 0);
 }

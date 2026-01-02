@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 16:41:21 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/31 20:44:16 by ekramer       ########   odam.nl         */
+/*   Updated: 2026/01/02 17:59:14 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	push(t_array *s1, t_array *s2, char *out)
 void	rotate(t_array *s1, t_array *s2, char *out)
 {
 	int	n;
-	
+
 	if (s1->len > 1)
 	{
 		n = s1->dat[0];
@@ -46,7 +46,7 @@ void	rotate(t_array *s1, t_array *s2, char *out)
 void	rotrev(t_array *s1, t_array *s2, char *out)
 {
 	int	n;
-	
+
 	if (s1->len > 1)
 	{
 		n = s1->dat[s1->len - 1];

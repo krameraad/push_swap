@@ -6,17 +6,17 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/29 18:41:52 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/31 19:44:11 by ekramer       ########   odam.nl         */
+/*   Updated: 2026/01/02 18:09:36 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void swap_int(int *a, int *b)
+void	swap_int(int *a, int *b)
 {
-    int c;
-    
-    c = *a;
-    *a = *b;
-    *b = c;
+	int	c;
+
+	c = *a;
+	*a = *b;
+	*b = c;
 }

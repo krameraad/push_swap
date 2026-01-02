@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/29 17:38:38 by ekramer       #+#    #+#                 */
-/*   Updated: 2025/12/31 21:34:56 by ekramer       ########   odam.nl         */
+/*   Updated: 2026/01/02 17:54:40 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_array	*arr_create(unsigned int size, int *data)
 {
 	t_array	*arr;
-	
+
 	arr = malloc(sizeof(t_array));
 	if (arr == NULL)
 		return (NULL);
