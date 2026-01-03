@@ -6,59 +6,11 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 00:23:00 by ekramer       #+#    #+#                 */
-/*   Updated: 2026/01/02 17:58:32 by ekramer       ########   odam.nl         */
+/*   Updated: 2026/01/03 00:54:00 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/* Check if an integer array contains duplicates.
-@param arr Array to check.
-@param size Size of the array.
-@return `true` if the array contains duplicates, otherwise `false`.*/
-static int	check_dupes(int const *arr, size_t size)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	while (i < size)
-	{
-		j = 0;
-		while (j < i)
-		{
-			if (arr[i] == arr[j])
-				return (true);
-			++j;
-		}
-		++i;
-	}
-	return (false);
-}
-
-/* Check if an array of strings contains anything other than
-a numeric or whitespace character.
-@param strs Array of strings to search.
-@return `true` if a bad character was found, otherwise `false`.*/
-static int	check_badchar(char const **strs)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 1;
-	while (strs[i] != NULL)
-	{
-		j = 0;
-		while (strs[i][j] != '\0')
-		{
-			if (ft_strchr(" \t\n\v\f\r0123456789-+", strs[i][j]) == NULL)
-				return (true);
-			++j;
-		}
-		++i;
-	}
-	return (false);
-}
 
 static char	**setup_strings(int argc, char const **argv)
 {
@@ -87,31 +39,71 @@ static char	**setup_strings(int argc, char const **argv)
 	return (strs);
 }
 
+static long long	ft_atoll(const char *str)
+{
+	long long	total;
+	int			sign;
+	int			i;
+
+	sign = 1;
+	total = 0;
+	i = 0;
+	while (ft_strchr(" \t\n\v\f\r", str[i]))
+		++i;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		++i;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		total = (total * 10) + str[i] - '0';
+		++i;
+	}
+	return (total * sign);
+}
+
+static int	*setup_array(int i, char **strs)
+{
+	int			*array;
+	long long	n;
+
+	array = malloc(i * sizeof(int));
+	if (array == NULL)
+		return (ft_printf("Out of memory\n"), NULL);
+	i = 0;
+	while (strs[i] != NULL)
+	{
+		n = ft_atoll(strs[i]);
+		if (n < INT_MAX && n > INT_MIN)
+			array[i] = n;
+		else
+			return (ft_printf("Error\n"), free(array), NULL);
+		++i;
+	}
+	return (array);
+}
+
 static int	setup_stacks(t_array **stacks, char **strs)
 {
-	int		*array;
-	size_t	i;
+	int			*array;
+	size_t		i;
 
 	i = 0;
 	while (strs[i] != NULL)
 		++i;
-	array = malloc(i * sizeof(int));
+	array = setup_array(i, strs);
 	if (array == NULL)
 		return (-1);
-	i = 0;
-	while (strs[i] != NULL)
-	{
-		array[i] = ft_atoi(strs[i]);
-		++i;
-	}
 	if (check_dupes(array, i))
-		return (ft_printf("Error"), free(array), -1);
+		return (ft_printf("Error\n"), free(array), -1);
 	stacks[0] = arr_create(i, array);
 	if (stacks[0] == NULL)
-		return (ft_printf("Out of memory"), free(array), -1);
+		return (ft_printf("Out of memory\n"), free(array), -1);
 	stacks[1] = arr_create(i, NULL);
 	if (stacks[1] == NULL)
-		return (ft_printf("Out of memory"), arr_free(stacks[0]), -1);
+		return (ft_printf("Out of memory\n"), arr_free(stacks[0]), -1);
 	return (0);
 }
 
@@ -124,20 +116,20 @@ int	main(int argc, char const *argv[])
 	if (argc == 1)
 		return (0);
 	if (check_badchar(argv))
-		return (ft_printf("Error"), -1);
+		return (ft_printf("Error\n"), 1);
 	strs = setup_strings(argc, argv);
 	if (strs == NULL)
-		return (-1);
+		return (ft_printf("Out of memory\n"), 1);
 	stacks = malloc(2 * sizeof(t_array));
 	if (stacks == NULL)
-		return (free(strs), -1);
+		return (free(strs), 1);
 	if (setup_stacks(stacks, strs) == -1)
-		return (free(strs), free(stacks), -1);
+		return (free(strs), free(stacks), 1);
 	i = 0;
 	while (strs[i] != NULL)
 		free(strs[i++]);
 	free(strs);
 	if (sort(stacks) == -1)
-		return (arr_free(stacks[0]), arr_free(stacks[1]), free(stacks), -1);
+		return (arr_free(stacks[0]), arr_free(stacks[1]), free(stacks), 1);
 	return (arr_free(stacks[0]), arr_free(stacks[1]), free(stacks), 0);
 }

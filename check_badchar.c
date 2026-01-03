@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   sort.c                                             :+:    :+:            */
+/*   check_badchar.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/12/29 22:56:18 by ekramer       #+#    #+#                 */
-/*   Updated: 2026/01/03 00:46:22 by ekramer       ########   odam.nl         */
+/*   Created: 2026/01/03 00:16:42 by ekramer       #+#    #+#                 */
+/*   Updated: 2026/01/03 00:17:49 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	sort(t_array **stacks)
+int	check_badchar(char const **strs)
 {
-	if (to_ranks(stacks[0]) == -1)
-		return (ft_printf("Out of memory\n"), -1);
-	if (arr_issorted(stacks[0]))
-		return (0);
-	if (stacks[0]->max == 3)
-		return (sort3(stacks[0]));
-	if (stacks[0]->max == 5)
-		return (sort5(stacks[0], stacks[1]));
-	return (sort_radix(stacks[0], stacks[1], 0));
+	size_t	i;
+	size_t	j;
+
+	i = 1;
+	while (strs[i] != NULL)
+	{
+		j = 0;
+		while (strs[i][j] != '\0')
+		{
+			if (ft_strchr(" \t\n\v\f\r0123456789-+", strs[i][j]) == NULL)
+				return (true);
+			++j;
+		}
+		++i;
+	}
+	return (false);
 }

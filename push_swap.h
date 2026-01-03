@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 00:13:54 by ekramer       #+#    #+#                 */
-/*   Updated: 2026/01/02 17:54:02 by ekramer       ########   odam.nl         */
+/*   Updated: 2026/01/03 00:41:58 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,5 +181,21 @@ The last element becomes the first one.
 @param out What the output of the operation should be.
 The output should include the `\\n`.*/
 void	rotrev(t_array *s1, t_array *s2, char *out);
+
+/*
+	VALIDATION
+*/
+
+/* Check if an integer array contains duplicates.
+@param arr Array to check.
+@param size Size of the array.
+@return `true` if the array contains duplicates, otherwise `false`.*/
+int		check_dupes(int const *arr, size_t size);
+
+/* Check if an array of strings contains anything other than
+a numeric or whitespace character.
+@param strs Array of strings to search.
+@return `true` if a bad character was found, otherwise `false`.*/
+int		check_badchar(char const **strs);
 
 #endif
