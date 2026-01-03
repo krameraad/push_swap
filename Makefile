@@ -38,7 +38,7 @@ test: all norm valgrind test_error test_identity test_3 test_5 test_100 test_500
 
 norm:
 	@echo ""
-	norminette -RCheckForbiddenSourceHeader $(SRC)
+	norminette -RCheckForbiddenSourceHeader $(SRC) $(NAME).h
 
 valgrind:
 	@echo ""

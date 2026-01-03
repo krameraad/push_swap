@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 00:13:54 by ekramer       #+#    #+#                 */
-/*   Updated: 2026/01/03 21:11:34 by ekramer       ########   odam.nl         */
+/*   Updated: 2026/01/03 21:29:22 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,26 @@ appropriate for the stack's size.
 @param stacks Pair of stacks to sort.
 @return Amount of operations performed.
 `-1` if `malloc()` failed.*/
-int		sort(t_array **stacks);
+int			sort(t_array **stacks);
 
 /* Sort a stack of size 3 using hardcoded solutions.
 @param a Stack to sort.
 @return Amount of operations performed. */
-int		sort3(t_array *a);
+int			sort3(t_array *a);
 
 /* Sort a stack of size 4 using `sort3()`
 followed by some simple operations.
 @param a Stack to sort.
 @param b Buffer stack.
 @return Amount of operations performed. */
-int		sort4(t_array *a, t_array *b);
+int			sort4(t_array *a, t_array *b);
 
 /* Sort a stack of size 5 using `sort3()`
 followed by some simple operations.
 @param a Stack to sort.
 @param b Buffer stack.
 @return Amount of operations performed. */
-int		sort5(t_array *a, t_array *b);
+int			sort5(t_array *a, t_array *b);
 
 /* Sort a stack of any size using a recursive radix sort algorithm.
 Inefficient for small stacks.
@@ -72,7 +72,7 @@ Should be `0`.
 (to cover the amount of bits in the largest possible number).
 Should be `-1`.
 @return Amount of operations performed. */
-int		sort_radix(t_array *a, t_array *b, char shift, char maxshift);
+int			sort_radix(t_array *a, t_array *b, char shift, char maxshift);
 
 /*
 	ARRAY UTILS
@@ -84,45 +84,45 @@ int		sort_radix(t_array *a, t_array *b, char shift, char maxshift);
 It's optional: if `data` is `NULL`,
 a new array is made and assigned to `dat`.
 @return Resulting `t_array`. `NULL` if `malloc()` failed.*/
-t_array	*arr_create(unsigned int size, int *data);
+t_array		*arr_create(unsigned int size, int *data);
 
 /* Free a `t_array` and its contents.
 @param arr Array to free.*/
-void	arr_free(t_array *arr);
+void		arr_free(t_array *arr);
 
 /* Add an integer to the end of a `t_array`.
 @param arr Array to append to.
 @param n Integer to append.
 @return `0` if an integer was successfully appended.
 `-1` if there was no room.*/
-int		arr_append(t_array *arr, int n);
+int			arr_append(t_array *arr, int n);
 
 /* Add an integer to the start of a `t_array`.
 @param arr Array to prepend to.
 @param n Integer to prepend.
 @return `0` if an integer was successfully prepended.
 `-1` if there was no room.*/
-int		arr_prepend(t_array *arr, int n);
+int			arr_prepend(t_array *arr, int n);
 
 /* Remove the first integer of a `t_array`.
 @param arr Array to remove from.
 @return `0` if an integer was removed.
 `-1` if the array contained no integers.*/
-int		arr_remove(t_array *arr);
+int			arr_remove(t_array *arr);
 
 /* Print the elements of a `t_array` to `stdout`.
 @param arr Array to print.*/
-void	arr_print(t_array *arr);
+void		arr_print(t_array *arr);
 
 /* Check if a `t_array` is sorted.
 @param arr Array to check.
 @return `true` if sorted, otherwise `false`.*/
-int		arr_issorted(t_array *arr);
+int			arr_issorted(t_array *arr);
 
 /* Swap the values of two integers using pointers.
 @param a First integer.
 @param b Second integer.*/
-void	swap_int(int *a, int *b);
+void		swap_int(int *a, int *b);
 
 /* Formats input using various options and writes to `fd`.
 @param fd File descriptor to write to.
@@ -130,7 +130,7 @@ void	swap_int(int *a, int *b);
 permitting the conversion specifiers `cspdiuxX%`.
 @param ... Arguments to write.
 @return Number of characters written. */
-int		ft_printf_fd(int fd, char const *s, ...);
+int			ft_printf_fd(int fd, char const *s, ...);
 
 /* Converts the initial portion of string `str`,
 returning it as a long long.
@@ -150,7 +150,7 @@ Do nothing if there is only one element or none.
 @param s2 Other stack to swap on. Can be `NULL`.
 @param out What the output of the operation should be.
 The output should include the `\\n`.*/
-void	swap(t_array *s1, t_array *s2, char *out);
+void		swap(t_array *s1, t_array *s2, char *out);
 
 /* Equivalent of `pa` and `pb`.
 
@@ -161,7 +161,7 @@ Do nothing if the stack is empty.
 @param s2 Stack to push to.
 @param out What the output of the operation should be.
 The output should include the `\\n`.*/
-void	push(t_array *s1, t_array *s2, char *out);
+void		push(t_array *s1, t_array *s2, char *out);
 
 /* Equivalent of `ra`, `rb` and `rr`.
 
@@ -171,7 +171,7 @@ The first element becomes the last one.
 @param s2 Pointer to other stack to rotate. Can be `NULL`.
 @param out What the output of the operation should be.
 The output should include the `\\n`.*/
-void	rotate(t_array *s1, t_array *s2, char *out);
+void		rotate(t_array *s1, t_array *s2, char *out);
 
 /* Equivalent of `rra`, `rrb` and `rrr`.
 
@@ -181,7 +181,7 @@ The last element becomes the first one.
 @param s2 Pointer to other stack to rotate. Can be `NULL`.
 @param out What the output of the operation should be.
 The output should include the `\\n`.*/
-void	rotrev(t_array *s1, t_array *s2, char *out);
+void		rotrev(t_array *s1, t_array *s2, char *out);
 
 /*
 	VALIDATION
@@ -191,18 +191,18 @@ void	rotrev(t_array *s1, t_array *s2, char *out);
 @param arr Array to check.
 @param size Size of the array.
 @return `true` if the array contains duplicates, otherwise `false`.*/
-int		check_dupes(int const *arr, size_t size);
+int			check_dupes(int const *arr, size_t size);
 
 /* Check if an array of strings contains anything other than
 a numeric or whitespace character.
 @param strs Array of strings to search.
 @return `true` if a bad character was found, otherwise `false`.*/
-int		check_badchar(char const **strs);
+int			check_badchar(char const **strs);
 
 /* Check if a string contains signs (`-`, `+`) in the wrong places.
 For example, `-`, `12-1`, `--23`
 @param str Array to check.
 @return `true` if the array contains duplicates, otherwise `false`.*/
-int		check_badsigns(char const *str);
+int			check_badsigns(char const *str);
 
 #endif
