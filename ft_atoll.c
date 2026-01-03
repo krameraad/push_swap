@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   sort4.c                                            :+:    :+:            */
+/*   ft_atoll.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ekramer <ekramer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2026/01/03 19:00:29 by ekramer       #+#    #+#                 */
-/*   Updated: 2026/01/03 20:48:23 by ekramer       ########   odam.nl         */
+/*   Created: 2026/01/03 19:34:37 by ekramer       #+#    #+#                 */
+/*   Updated: 2026/01/03 20:56:49 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	sort4(t_array *a, t_array *b)
+long long	ft_atoll(const char *str)
 {
-	unsigned int	i;
+	long long	total;
+	char		sign;
+	size_t		i;
 
+	sign = 1;
+	total = 0;
 	i = 0;
-	while (i < a->len)
+	while (ft_strchr(" \t\n\v\f\r", str[i]))
+		++i;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (a->dat[0] == 3)
-			push(a, b, "pb\n");
-		else
-		{
-			rotate(a, NULL, "ra\n");
-			++i;
-		}
+		if (str[i] == '-')
+			sign *= -1;
+		++i;
 	}
-	i = sort3(a);
-	push(b, a, "pa\n");
-	rotate(a, NULL, "ra\n");
-	return (6 + i);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		total = (total * 10) + str[i] - '0';
+		++i;
+	}
+	return (total * sign);
 }

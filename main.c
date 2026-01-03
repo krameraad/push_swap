@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 00:23:00 by ekramer       #+#    #+#                 */
-/*   Updated: 2026/01/03 18:48:35 by ekramer       ########   odam.nl         */
+/*   Updated: 2026/01/03 20:20:01 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,31 +39,6 @@ static char	**setup_strings(int argc, char const **argv)
 	return (strs);
 }
 
-static long long	ft_atoll(const char *str)
-{
-	long long	total;
-	int			sign;
-	int			i;
-
-	sign = 1;
-	total = 0;
-	i = 0;
-	while (ft_strchr(" \t\n\v\f\r", str[i]))
-		++i;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign *= -1;
-		++i;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		total = (total * 10) + str[i] - '0';
-		++i;
-	}
-	return (total * sign);
-}
-
 static int	*setup_array(int i, char **strs)
 {
 	int			*array;
@@ -76,7 +51,7 @@ static int	*setup_array(int i, char **strs)
 	while (strs[i] != NULL)
 	{
 		n = ft_atoll(strs[i]);
-		if (n < INT_MAX && n > INT_MIN)
+		if (n <= INT_MAX && n >= INT_MIN && check_badsigns(strs[i]) == false)
 			array[i] = n;
 		else
 			return (ft_printf_fd(2, "Error\n"), free(array), NULL);

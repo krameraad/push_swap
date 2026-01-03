@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 00:13:54 by ekramer       #+#    #+#                 */
-/*   Updated: 2026/01/03 19:01:51 by ekramer       ########   odam.nl         */
+/*   Updated: 2026/01/03 21:11:34 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,14 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
+/* Used for INT_MAX, INT_MIN */
 # include <limits.h>
 
-// 3 integers: maximum moves allowed.
-# define OPS_MAX_3 3
-
-// 5 integers: maximum moves allowed.
-# define OPS_MAX_5 12
-
-// 100 integers: maximum moves for highest score.
-# define OPS_MAX1_100 700
-// 100 integers: maximum moves allowed.
-# define OPS_MAX2_100 1500
-
-// 500 integers: maximum moves for highest score.
-# define OPS_MAX1_500 5500
-// 500 integers: maximum moves allowed.
-# define OPS_MAX2_500 11500
-
+/* Safe array type bundled with some information.
+Use `arr_*()` functions to manage `t_array` objects.
+- `dat` - The array of elements itself.
+- `max` - Capacity of the array.
+- `len` - Number of elements in the array. */
 typedef struct s_array
 {
 	int				*dat; // Array of elements.
@@ -44,6 +34,9 @@ typedef struct s_array
 */
 
 /* Sort a pair of `t_array` stacks.
+`sort()` first checks if the integers are sorted,
+otherwise it will select and run an algorithm
+appropriate for the stack's size.
 @param stacks Pair of stacks to sort.
 @return Amount of operations performed.
 `-1` if `malloc()` failed.*/
@@ -68,16 +61,16 @@ followed by some simple operations.
 @return Amount of operations performed. */
 int		sort5(t_array *a, t_array *b);
 
-/* Sort a stack of any size using radix sort.
-Inefficient for small stacks, making other sorts useful.
+/* Sort a stack of any size using a recursive radix sort algorithm.
+Inefficient for small stacks.
 @param a Stack to sort.
 @param b Buffer stack.
 @param shift How many bits to check from the start of each integer.
 Incremented after each recursive loop until it reaches `maxshift`.
-Should be `0` if called from outside `sort_radix()`.
+Should be `0`.
 @param maxshift Maximum amount of loops to perform
 (to cover the amount of bits in the largest possible number).
-Should be `-1` if called from outside `sort_radix()`.
+Should be `-1`.
 @return Amount of operations performed. */
 int		sort_radix(t_array *a, t_array *b, char shift, char maxshift);
 
@@ -139,6 +132,12 @@ permitting the conversion specifiers `cspdiuxX%`.
 @return Number of characters written. */
 int		ft_printf_fd(int fd, char const *s, ...);
 
+/* Converts the initial portion of string `str`,
+returning it as a long long.
+@param str String to convert.
+@return Long long representation of `str`. */
+long long	ft_atoll(const char *str);
+
 /*
 	OPERATIONS
 */
@@ -199,5 +198,11 @@ a numeric or whitespace character.
 @param strs Array of strings to search.
 @return `true` if a bad character was found, otherwise `false`.*/
 int		check_badchar(char const **strs);
+
+/* Check if a string contains signs (`-`, `+`) in the wrong places.
+For example, `-`, `12-1`, `--23`
+@param str Array to check.
+@return `true` if the array contains duplicates, otherwise `false`.*/
+int		check_badsigns(char const *str);
 
 #endif

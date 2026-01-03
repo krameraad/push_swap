@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/29 22:56:18 by ekramer       #+#    #+#                 */
-/*   Updated: 2026/01/03 19:14:21 by ekramer       ########   odam.nl         */
+/*   Updated: 2026/01/03 20:50:14 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,7 @@ int	sort(t_array **stacks)
 	if (arr_issorted(stacks[0]))
 		return (0);
 	if (stacks[0]->max == 2)
-		if (stacks[0]->dat[0] == 1)
-			return (swap(stacks[0], NULL, "sa\n"), 1);
+		return (swap(stacks[0], NULL, "sa\n"), 1);
 	if (stacks[0]->max == 3)
 		return (sort3(stacks[0]));
 	if (stacks[0]->max == 4)

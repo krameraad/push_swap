@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   sort4.c                                            :+:    :+:            */
+/*   check_badsigns.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ekramer <ekramer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2026/01/03 19:00:29 by ekramer       #+#    #+#                 */
-/*   Updated: 2026/01/03 20:48:23 by ekramer       ########   odam.nl         */
+/*   Created: 2026/01/03 20:20:15 by ekramer       #+#    #+#                 */
+/*   Updated: 2026/01/03 20:39:31 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	sort4(t_array *a, t_array *b)
+int	check_badsigns(char const *str)
 {
-	unsigned int	i;
+	size_t	i;
 
 	i = 0;
-	while (i < a->len)
+	while (str[i])
 	{
-		if (a->dat[0] == 3)
-			push(a, b, "pb\n");
-		else
+		if (str[i] == '-' || str[i] == '+')
 		{
-			rotate(a, NULL, "ra\n");
-			++i;
+			if (str[i + 1] == '\0' || !ft_strchr("0123456789", str[i + 1]))
+				return (true);
+			if (i > 0 && !ft_strchr(" \t\n\v\f\r", str[i - 1]))
+				return (true);
 		}
+		++i;
 	}
-	i = sort3(a);
-	push(b, a, "pa\n");
-	rotate(a, NULL, "ra\n");
-	return (6 + i);
+	return (false);
 }

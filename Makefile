@@ -6,7 +6,8 @@ LIBFT = $(DIR_LIBFT)libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I./libft
 
-SRC = main.c operations.c check_badchar.c check_dupes.c ft_printf_fd.c \
+SRC = main.c operations.c check_badchar.c check_dupes.c check_badsigns.c \
+ft_printf_fd.c ft_atoll.c \
 arr_append.c arr_create.c arr_free.c \
 arr_issorted.c arr_prepend.c arr_remove.c \
 sort.c sort3.c sort4.c sort5.c sort_radix.c swap_int.c
