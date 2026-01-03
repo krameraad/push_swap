@@ -14,7 +14,7 @@ Implement a sorting algorithm that can use these operations to sort any given li
 Tests are dependent on `arg_gen` from this repo: `git@github.com:krameraad/arg_gen.git`. It's a program to generate random arrays of integers, ordered, shuffled, and with varying distances between each element.
 
 Clone `arg_gen` and place its source file in the push_swap directory.
-Then, run `make -i test` in the root directory to compile the program and run all tests with `arg_gen`. Some of the tests use a random seed, which must be manually changed if you want to see more permutations (there are three default seeds per category).
+Then, run `make -i test` in the root directory to compile the program and run all tests with `arg_gen`. **The `-i` is important**: some tests cause the program to exit with a non-zero exit code, which normally stops Make from progressing. Some of the tests use a random seed, which must be manually changed if you want to see more permutations (there are three default seeds per category).
 
 ## Resources
 I evaluated someone on push_swap before making this project, which gave me a good idea on how to make the project. He was also the reason I used radix sort. Apart from that, I used help from other students and AI.

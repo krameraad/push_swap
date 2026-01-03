@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 00:13:54 by ekramer       #+#    #+#                 */
-/*   Updated: 2026/01/03 00:41:58 by ekramer       ########   odam.nl         */
+/*   Updated: 2026/01/03 16:42:25 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,14 @@ int		sort5(t_array *a, t_array *b);
 Inefficient for small stacks, making other sorts useful.
 @param a Stack to sort.
 @param b Buffer stack.
+@param shift How many bits to check from the start of each integer.
+Incremented after each recursive loop until it reaches `maxshift`.
+Should be `0` if called from outside `sort_radix()`.
+@param maxshift Maximum amount of loops to perform
+(to cover the amount of bits in the largest possible number).
+Should be `-1` if called from outside `sort_radix()`.
 @return Amount of operations performed. */
-int		sort_radix(t_array *a, t_array *b, unsigned char shift);
+int		sort_radix(t_array *a, t_array *b, char shift, char maxshift);
 
 /*
 	ARRAY UTILS
@@ -112,30 +118,10 @@ void	arr_print(t_array *arr);
 @return `true` if sorted, otherwise `false`.*/
 int		arr_issorted(t_array *arr);
 
-/* Shuffle a `t_array` using `rand()`.
-@param arr Array to shuffle.*/
-void	arr_shuffle(t_array *arr);
-
-/* Fill a `t_array` with successive integers in ascending order.
-@param arr Array to populate.*/
-void	arr_populate(t_array *arr);
-
 /* Swap the values of two integers using pointers.
 @param a First integer.
 @param b Second integer.*/
 void	swap_int(int *a, int *b);
-
-/* Swap the values of two pointers using pointers.
-@param a First pointer.
-@param b Second pointer.*/
-void	swap_ptr(void **a, void **b);
-
-/* Convert the values of a `t_array` to normalized ranks
-(eg. `-12, 50, 2899` -> `0, 1, 2`).
-@param arr Array to convert.
-@return `0` if the operation was successful.
-`-1` if `malloc()` failed.*/
-int		to_ranks(t_array *arr);
 
 /*
 	OPERATIONS
