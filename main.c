@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 00:23:00 by ekramer       #+#    #+#                 */
-/*   Updated: 2026/01/03 00:54:00 by ekramer       ########   odam.nl         */
+/*   Updated: 2026/01/03 18:48:35 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	*setup_array(int i, char **strs)
 
 	array = malloc(i * sizeof(int));
 	if (array == NULL)
-		return (ft_printf("Out of memory\n"), NULL);
+		return (ft_printf_fd(2, "Out of memory\n"), NULL);
 	i = 0;
 	while (strs[i] != NULL)
 	{
@@ -79,7 +79,7 @@ static int	*setup_array(int i, char **strs)
 		if (n < INT_MAX && n > INT_MIN)
 			array[i] = n;
 		else
-			return (ft_printf("Error\n"), free(array), NULL);
+			return (ft_printf_fd(2, "Error\n"), free(array), NULL);
 		++i;
 	}
 	return (array);
@@ -97,13 +97,13 @@ static int	setup_stacks(t_array **stacks, char **strs)
 	if (array == NULL)
 		return (-1);
 	if (check_dupes(array, i))
-		return (ft_printf("Error\n"), free(array), -1);
+		return (ft_printf_fd(2, "Error\n"), free(array), -1);
 	stacks[0] = arr_create(i, array);
 	if (stacks[0] == NULL)
-		return (ft_printf("Out of memory\n"), free(array), -1);
+		return (ft_printf_fd(2, "Out of memory\n"), free(array), -1);
 	stacks[1] = arr_create(i, NULL);
 	if (stacks[1] == NULL)
-		return (ft_printf("Out of memory\n"), arr_free(stacks[0]), -1);
+		return (ft_printf_fd(2, "Out of memory\n"), arr_free(stacks[0]), -1);
 	return (0);
 }
 
@@ -113,13 +113,15 @@ int	main(int argc, char const *argv[])
 	char	**strs;
 	int		i;
 
-	if (argc == 1)
+	if (argc <= 1)
 		return (0);
+	if (ft_strlen(argv[1]) == 0)
+		return (ft_printf_fd(2, "Error\n"), 1);
 	if (check_badchar(argv))
-		return (ft_printf("Error\n"), 1);
+		return (ft_printf_fd(2, "Error\n"), 1);
 	strs = setup_strings(argc, argv);
 	if (strs == NULL)
-		return (ft_printf("Out of memory\n"), 1);
+		return (ft_printf_fd(2, "Out of memory\n"), 1);
 	stacks = malloc(2 * sizeof(t_array));
 	if (stacks == NULL)
 		return (free(strs), 1);

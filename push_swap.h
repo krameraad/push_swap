@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/24 00:13:54 by ekramer       #+#    #+#                 */
-/*   Updated: 2026/01/03 16:42:25 by ekramer       ########   odam.nl         */
+/*   Updated: 2026/01/03 19:01:51 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,15 @@ int		sort(t_array **stacks);
 @return Amount of operations performed. */
 int		sort3(t_array *a);
 
-/* Sort a stack of size 5 `sort3()` and then some simple operations.
+/* Sort a stack of size 4 using `sort3()`
+followed by some simple operations.
+@param a Stack to sort.
+@param b Buffer stack.
+@return Amount of operations performed. */
+int		sort4(t_array *a, t_array *b);
+
+/* Sort a stack of size 5 using `sort3()`
+followed by some simple operations.
 @param a Stack to sort.
 @param b Buffer stack.
 @return Amount of operations performed. */
@@ -122,6 +130,14 @@ int		arr_issorted(t_array *arr);
 @param a First integer.
 @param b Second integer.*/
 void	swap_int(int *a, int *b);
+
+/* Formats input using various options and writes to `fd`.
+@param fd File descriptor to write to.
+@param s String to write. `%` serves as an escape character,
+permitting the conversion specifiers `cspdiuxX%`.
+@param ... Arguments to write.
+@return Number of characters written. */
+int		ft_printf_fd(int fd, char const *s, ...);
 
 /*
 	OPERATIONS

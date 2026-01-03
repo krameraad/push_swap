@@ -6,10 +6,10 @@ LIBFT = $(DIR_LIBFT)libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I./libft
 
-SRC = main.c operations.c check_badchar.c check_dupes.c \
+SRC = main.c operations.c check_badchar.c check_dupes.c ft_printf_fd.c \
 arr_append.c arr_create.c arr_free.c \
 arr_issorted.c arr_prepend.c arr_remove.c \
-sort.c sort3.c sort5.c sort_radix.c swap_int.c
+sort.c sort3.c sort4.c sort5.c sort_radix.c swap_int.c
 OBJ = $(SRC:.c=.o)
 
 # Tests -----------------------------------------------------------------------
@@ -18,8 +18,6 @@ CHECKER = checker_linux
 TEST_3 = "2 1 0"
 TEST_5 = "1 5 2 4 3"
 ARGGEN = arg_gen
-NUM_TESTS = 5
-SEED = $(shell date +%s)
 
 # Commands --------------------------------------------------------------------
 
