@@ -6,7 +6,7 @@
 /*   By: ekramer <ekramer@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/12/29 22:56:18 by ekramer       #+#    #+#                 */
-/*   Updated: 2026/01/03 20:50:14 by ekramer       ########   odam.nl         */
+/*   Updated: 2026/01/03 21:20:00 by ekramer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static size_t	iter_bubble(int **array, size_t size)
 	size_t	lastswap;
 
 	i = 0;
+	lastswap = 0;
 	while (i < size - 1)
 	{
 		if (*array[i] > *array[i + 1])
