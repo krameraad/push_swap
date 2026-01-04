@@ -20,3 +20,6 @@ Then, run `make -i test` in the root directory to compile the program and run al
 I evaluated someone on push_swap before making this project, which gave me a good idea on how to make the project. He was also the reason I used radix sort. Apart from that, I used help from other students and AI.
 - Bitwise operators: https://www.geeksforgeeks.org/c/bitwise-operators-in-c-cpp/
 - Radix sort visualization: https://www.youtube.com/watch?v=mVRHvZF8xtg
+
+## Radix sort method
+[![sort-radix.png](https://i.postimg.cc/NFK37VLb/sort-radix.png)](https://postimg.cc/N2wCQd6r)
